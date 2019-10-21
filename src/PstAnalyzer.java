@@ -36,6 +36,8 @@ public class PstAnalyzer {
             pstAnalysis.getAllSenders(pstAnalysis.sentFolders);
             pstAnalysis.getMaxRecipient();
             pstAnalysis.getMaxSender();
+            pstAnalysis.printRecipients();
+            pstAnalysis.printSenders();
 
             pst.close();
 
@@ -217,6 +219,24 @@ public class PstAnalyzer {
         if (senders.size() > 0) {
             System.out.println("From senders: ");
             System.out.println(Collections.max(senders.entrySet(), Comparator.comparingInt(Map.Entry::getValue)).getKey());
+        }
+    }
+
+    // Method to print all recipients from the recipients list.
+
+    private void printRecipients(){
+        System.out.println("All recipients:");
+        if(recipients.size() > 0){
+            recipients.forEach((sender, count) -> System.out.println(sender + " (" + count + ")"));
+        }
+    }
+
+    // Method to print all senders from the senders list.
+
+    private void printSenders(){
+        System.out.println("All senders:");
+        if(senders.size() > 0){
+            senders.forEach((sender, count) -> System.out.println(sender + " (" + count + ")"));
         }
     }
 }
